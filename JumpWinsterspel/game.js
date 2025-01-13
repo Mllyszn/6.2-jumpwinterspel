@@ -2,7 +2,13 @@
 //     var game = new Phaser.game();
 // }
 
-let gameScene = new Phaser.Scene("Game");
+// const { Physics } = require("phaser");
+
+
+var game = new Phaser.Game(800,600,Phaser.CANVAS,'gameDiv');
+// const game = new Phaser.Game(config);
+
+// let gameScene = new Phaser.Scene("Game");
 
 gameScene.init = function () {};
 
@@ -14,14 +20,19 @@ gameScene.preload = function () {
         frameWidth: 32,
         frameHeight: 48,
     });
-    // this.load.spritesheet("player", "assets/img/jk_spritesheet.png", {
-    //     frameWidth: 32,
-    //     frameHeight: 48,
-    // });
+    this.load.spritesheet("player", "assets/img/jk_spritesheet.png", {
+        frameWidth: 32,
+        frameHeight: 48,
+    });
 };
 
 let player;
 var platforms;
+
+// physics!!!
+
+const { Physics } = require("phaser");
+this.physics.add.collider(player, platform);
 
 gameScene.create = function () {
     // background
@@ -45,34 +56,51 @@ gameScene.create = function () {
         player.setCollideWorldBounds(true);
     };
 
-    // this.anims.create({
-    //     key: "left",
-    //     frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
-    //     frameRate: 10,
-    //     repeat: -1,
-    // });
+    this.anims.create({
+        key: "left",
+        frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1,
+    });
 
-    // this.anims.create({
-    //     key: "turn",
-    //     frames: [{ key: "player", frame: 4 }],
-    //     frameRate: 20,
-    // });
+    this.anims.create({
+        key: "turn",
+        frames: [{ key: "player", frame: 4 }],
+        frameRate: 20,
+    });
 
-    // this.anims.create({
-    //     key: "right",
-    //     frames: this.anims.generateFrameNumbers("player", { start: 5, end: 8 }),
-    //     frameRate: 10,
-    //     repeat: -1,
-    // });
+    this.anims.create({
+        key: "right",
+        frames: this.anims.generateFrameNumbers("player", { start: 5, end: 8 }),
+        frameRate: 10,
+        repeat: -1,
+    });
 };
 
-var config = {
+// var config = {
+//     type: Phaser.AUTO,
+//     width: 800,
+//     height: 600,
+//     scene: gameScene,
+//     title: "winter jumpking",
+//     pixelArt: false,
+// };
+
+let config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scene: gameScene,
-    title: "winter jumpking",
-    pixelArt: false,
-};
+    width: 1000,
+    height: 615,
+    physics: {
+      default: "arcade",
+      arcade: {
+        debug: false
+      }
+    },
+    scene: {
+      preload: preload,
+      create: create,
+      update: update
+    }
+  };
 
-let game = new Phaser.Game(config);
+// let game = new Phaser.Game(config);
