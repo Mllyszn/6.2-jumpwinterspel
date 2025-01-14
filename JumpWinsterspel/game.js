@@ -14,7 +14,7 @@ var config = {
     scene: {
         preload: preload,
         create: create,
-        // update: update,
+        // update: update, //comment = game werkend
     }
 };
 
@@ -42,8 +42,8 @@ function create() {
     platforms = this.physics.add.staticGroup();
 
     // Ground
-    platforms.create(400, 575, "ground").setOrigin(0.5, 0).refreshBody();
-    platforms.create(600, 400, "ground").setOrigin(0.5, 0).refreshBody();
+    platforms.create(200, 575, "ground").setOrigin(0.5, 0).refreshBody();
+    platforms.create(600, 575, "ground").setOrigin(0.5, 0).refreshBody();
     platforms.create(50, 175, "platform").setOrigin(0.5, 0).refreshBody(); // mid-left
     platforms.create(400, 330, "platform").setOrigin(0.5, 0).refreshBody(); // off-center
     platforms.create(450, 40, "platform").setOrigin(0.5, 0).refreshBody(); // top-right
@@ -78,21 +78,21 @@ function create() {
     });
 }
 
-// function update() {
-//     // Handle player input for movement
-//     if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.LEFT)) {
-//         player.setVelocityX(-160);
-//         player.anims.play("left", true);
-//     } else if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT)) {
-//         player.setVelocityX(160);
-//         player.anims.play("right", true);
-//     } else {
-//         player.setVelocityX(0);
-//         player.anims.play("turn");
-//     }
+function update() {
+    // Handle player input for movement
+    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.LEFT)) {
+        player.setVelocityX(-160);
+        player.anims.play("left", true);
+    } else if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT)) {
+        player.setVelocityX(160);
+        player.anims.play("right", true);
+    } else {
+        player.setVelocityX(0);
+        player.anims.play("turn");
+    }
 
-//     // Jumping
-//     if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.UP) && player.body.touching.down) {
-//         player.setVelocityY(-330);
-//     }
-// }
+    // Jumping
+    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.UP) && player.body.touching.down) {
+        player.setVelocityY(-330);
+    }
+}
