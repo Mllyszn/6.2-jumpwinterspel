@@ -3,18 +3,18 @@ var config = {
     type: Phaser.CANVAS,
     width: 800,
     height: 600,
-    backgroundColor: '#f3cca3',
+    // backgroundColor: '#f3cca3', //background color
     physics: {
         default: "arcade",
         arcade: {
-            gravity: { y: 0 }, // No gravity for a platformer
+            gravity: { y: 0 }, 
             debug: false
         }
     },
     scene: {
         preload: preload,
         create: create,
-        update: update
+        // update: update,
     }
 };
 
@@ -24,6 +24,7 @@ let player;
 let platforms;
 
 function preload() {
+
     this.load.image("background", "assets/img/sky.png");
     this.load.image("ground", "assets/img/platform.png");
     this.load.image("platform", "assets/img/air_grass-platform.png");
@@ -47,7 +48,6 @@ function create() {
     platforms.create(400, 330, "platform").setOrigin(0.5, 0).refreshBody(); // off-center
     platforms.create(450, 40, "platform").setOrigin(0.5, 0).refreshBody(); // top-right
 
-    // Player
     player = this.physics.add.sprite(100, 450, "player");
     player.setScale(0.5);
     player.setBounce(0.2);
@@ -78,21 +78,21 @@ function create() {
     });
 }
 
-function update() {
-    // Handle player input for movement
-    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.LEFT)) {
-        player.setVelocityX(-160);
-        player.anims.play("left", true);
-    } else if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT)) {
-        player.setVelocityX(160);
-        player.anims.play("right", true);
-    } else {
-        player.setVelocityX(0);
-        player.anims.play("turn");
-    }
+// function update() {
+//     // Handle player input for movement
+//     if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.LEFT)) {
+//         player.setVelocityX(-160);
+//         player.anims.play("left", true);
+//     } else if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT)) {
+//         player.setVelocityX(160);
+//         player.anims.play("right", true);
+//     } else {
+//         player.setVelocityX(0);
+//         player.anims.play("turn");
+//     }
 
-    // Jumping
-    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.UP) && player.body.touching.down) {
-        player.setVelocityY(-330);
-    }
-}
+//     // Jumping
+//     if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.UP) && player.body.touching.down) {
+//         player.setVelocityY(-330);
+//     }
+// }
