@@ -51,9 +51,9 @@ function create() {
     platforms.create(200, 575, "ground").setOrigin(0.5, 0).refreshBody();
     platforms.create(600, 575, "ground").setOrigin(0.5, 0).refreshBody();
     // platforms
-    platforms.create(150, 175, "platform").setOrigin(0.5, 0).refreshBody(); // mid-left
-    platforms.create(400, 330, "platform").setOrigin(0.5, 0).refreshBody(); // off-center
-    platforms.create(625, 40, "platform").setOrigin(0.5, 0).refreshBody(); // top-right
+    platforms.create(150, 330, "platform").setOrigin(0.5, 0).refreshBody(); // mid-left
+    platforms.create(400, 450, "platform").setOrigin(0.5, 0).refreshBody(); // off-center
+    platforms.create(625, 250, "platform").setOrigin(0.5, 0).refreshBody(); // top-right
 
     player = this.physics.add.sprite(100, 450, "player");
     player.setScale(0.5);
